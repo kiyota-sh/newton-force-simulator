@@ -8,5 +8,5 @@ public class Constants
     public const string Title = "Newton Force Simulator";
 
     public const int TargetFps = 165;
-    public const float Gravity = 9.8f;
+    public const float Gravity = 10f;
 }

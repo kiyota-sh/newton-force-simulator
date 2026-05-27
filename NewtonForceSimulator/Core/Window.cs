@@ -25,8 +25,11 @@ public class Window
         
         Raylib.CloseWindow();
     }
-    
-    private void Update(float deltaTime) {}
+
+    private void Update(float deltaTime)
+    {
+        _renderer.Update(deltaTime);
+    }
 
     private void Draw()
     {
