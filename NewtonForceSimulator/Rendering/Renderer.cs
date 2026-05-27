@@ -35,6 +35,7 @@ public class Renderer
     {
         _engine.Update(
             _block,
+            _plane,
             _appliedForce,
             _plane.AngleDegrees,
             _uk,

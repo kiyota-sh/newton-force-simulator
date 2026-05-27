@@ -17,4 +17,13 @@ public class InclinedPlane
         End = end;
         AngleDegrees = angleDegrees;
     }
+    
+    public float AngleRadians =>
+        (MathF.PI / 180) * AngleDegrees;
+    
+    public Vector2 Direction =>
+        Vector2.Normalize(End - Start);
+    
+    public float Length =>
+        Vector2.Distance(Start, End);
 }

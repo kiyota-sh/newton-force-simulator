@@ -9,6 +9,8 @@ public sealed class Block
     public Vector2 Velocity { get; set; }
     public Vector2 Acceleration { get; set; }
     public float Size { get; }
+    
+    public float DistanceAlongPlane { get; set; }
 
     public Block(
         float mass,

@@ -21,6 +21,7 @@ public sealed class Engine
 
     public void Update(
         Block block,
+        InclinedPlane plane,
         float appliedForce,
         float angleDegrees,
         float muK,
@@ -58,12 +59,10 @@ public sealed class Engine
                 netForce,
                 block.Mass);
         
-        Vector2 accelerationVector =
-            new(CurrentAcceleration, 0);
-
         _motion.Integrate(
             block,
-            accelerationVector,
+            plane,
+            CurrentAcceleration,
             deltaTime);
     }
 }
