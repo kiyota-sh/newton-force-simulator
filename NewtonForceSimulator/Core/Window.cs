@@ -1,3 +1,4 @@
+using NewtonForceSimulator.Input;
 using NewtonForceSimulator.Rendering;
 using Raylib_cs;
 
@@ -6,12 +7,17 @@ namespace NewtonForceSimulator.Core;
 public class Window
 {
     public readonly Renderer _renderer;
+    private readonly UIController _uiController;
+    private readonly SimulationSettings _settings;
     
     public Window()
     {
         Raylib.InitWindow(Constants.ScreenWith, Constants.ScreenHeight, Constants.Title);
         Raylib.SetTargetFPS(Constants.TargetFps);
-        _renderer = new();
+        
+        _settings = new ();
+        _uiController = new ();
+        _renderer = new(_settings);
     }
 
     public void Run()
@@ -28,6 +34,7 @@ public class Window
 
     private void Update(float deltaTime)
     {
+        _uiController.Update(_settings);
         _renderer.Update(deltaTime);
     }
 

@@ -23,6 +23,7 @@ public sealed class Engine
         Block block,
         InclinedPlane plane,
         float appliedForce,
+        float appliedForceAngle,
         float angleDegrees,
         float muK,
         float deltaTime)

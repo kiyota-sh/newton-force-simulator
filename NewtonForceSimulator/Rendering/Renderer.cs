@@ -1,4 +1,5 @@
 using System.Numerics;
+using NewtonForceSimulator.Input;
 using NewtonForceSimulator.Models;
 using NewtonForceSimulator.Physics;
 using Raylib_cs;
@@ -14,9 +15,14 @@ public class Renderer
 
     private float _appliedForce = 120f;
     private float _uk = 0.1f;
+    
+    private readonly SimulationSettings _settings;
+    private readonly UIRenderer _uiRenderer;
 
-    public Renderer()
+    public Renderer(SimulationSettings settings)
     {
+        _settings = settings;
+        
         _plane = new InclinedPlane(
             new Vector2(250, 500),
             new Vector2(950, 250),
@@ -29,21 +35,30 @@ public class Renderer
 
         _diagramRenderer = new();
         _engine = new ();
+        
+        _uiRenderer = new UIRenderer();
     }
 
     public void Update(float deltaTime)
     {
-        _engine.Update(
-            _block,
-            _plane,
-            _appliedForce,
-            _plane.AngleDegrees,
-            _uk,
-            deltaTime);
+        _block.Mass = _settings.Mass;
+
+        if (!_settings.IsPaused)
+        {
+            _engine.Update(
+                _block,
+                _plane,
+                _settings.AppliedForce,
+                _settings.AppliedForceAngle,
+                _plane.AngleDegrees,
+                _settings.MuK,
+                deltaTime);
+        }
     }
     
     public void Draw()
     {
+        _uiRenderer.Draw(_settings, _engine);
         DrawInclinedPlane();
         DrawBlockAndVectors();
         DrawPhysicsInfo();
