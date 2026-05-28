@@ -68,7 +68,7 @@ public class Renderer
     private void DrawPhysicsInfo()
     {
         Raylib.DrawText(
-            $"Weigth: {_engine.currentWeight:F2} N",
+            $"Weigth: {_engine.CurrentWeight:F2} N",
             20, 40, 20, new Color(0, 255, 244));
         Raylib.DrawText(
             $"Mass: {_block.Mass} KG",

@@ -16,7 +16,7 @@ public sealed class UIRenderer
 
         DrawPhysicsResults(physics);
 
-        DrawQuadrant(settings.AngleDegrees);
+        DrawQuadrant(physics.CurrentQuadrant);
     }
 
     private void DrawPanel()
@@ -33,28 +33,28 @@ public sealed class UIRenderer
         SimulationSettings settings)
     {
         Raylib.DrawText(
-            $"Mass: {settings.Mass:F1} kg",
+            $"Mass: {settings.Mass:F0} kg",
             1000,
             50,
             20,
             Color.Black);
 
         Raylib.DrawText(
-            $"Force: {settings.AppliedForce:F1} N",
+            $"Force: {settings.AppliedForce:F0} N",
             1000,
             90,
             20,
             Color.Black);
 
         Raylib.DrawText(
-            $"Angle: {settings.AngleDegrees:F1}°",
+            $"Angle: {settings.AngleDegrees:F0}°",
             1000,
             130,
             20,
             Color.Black);
 
         Raylib.DrawText(
-            $"μk: {settings.MuK:F2}",
+            $"Uk: {settings.MuK:F1}",
             1000,
             170,
             20,
@@ -93,31 +93,13 @@ public sealed class UIRenderer
             Color.Blue);
     }
 
-    private void DrawQuadrant(float angle)
+    private void DrawQuadrant(Quadrant quadrant)
     {
-        string quadrant = GetQuadrant(angle);
-
         Raylib.DrawText(
-            $"Quadrant: {quadrant}",
+            $"Quadrant: {(int)quadrant}",
             1000,
             420,
             24,
             Color.Purple);
-    }
-
-    private string GetQuadrant(float angle)
-    {
-        angle %= 360f;
-
-        if (angle >= 0 && angle < 90)
-            return "I";
-
-        if (angle >= 90 && angle < 180)
-            return "II";
-
-        if (angle >= 180 && angle < 270)
-            return "III";
-
-        return "IV";
     }
 }

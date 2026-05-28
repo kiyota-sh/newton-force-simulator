@@ -7,17 +7,20 @@ public sealed class Engine
 {
     private readonly Calculator _calculator;
     private readonly Motion _motion;
+    private readonly QuadrantResolver _quadrantResolver;
 
     public Engine()
     {
         _calculator = new();
         _motion = new();
+        _quadrantResolver = new();
     }
 
-    public float currentWeight { get; private set; }
+    public float CurrentWeight { get; private set; }
     public float CurrentNormal { get; private set; }
     public float CurrentFriction { get; private set; }
     public float CurrentAcceleration { get; private set; }
+    public Quadrant CurrentQuadrant { get; private set; }
 
     public void Update(
         Block block,
@@ -36,7 +39,7 @@ public sealed class Engine
                 block.Mass,
                 angleRadians);
         
-        currentWeight =
+        CurrentWeight =
             _calculator.CalculateWeight(block.Mass);
 
         CurrentNormal =
@@ -65,5 +68,9 @@ public sealed class Engine
             plane,
             CurrentAcceleration,
             deltaTime);
+
+        CurrentQuadrant =
+            _quadrantResolver.Resolve(
+                appliedForceAngle);
     }
 }

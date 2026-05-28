@@ -12,6 +12,8 @@ public sealed class UIController
         HandleForce(settings);
 
         HandleAngle(settings);
+        
+        HandleForceAngle(settings);
 
         HandleMuK(settings);
 
@@ -76,12 +78,12 @@ public sealed class UIController
     private void HandleMuK(
         SimulationSettings settings)
     {
-        if (Raylib.IsKeyDown(KeyboardKey.W))
+        if (Raylib.IsKeyDown(KeyboardKey.Q))
         {
             settings.MuK += 0.01f;
         }
 
-        if (Raylib.IsKeyDown(KeyboardKey.S))
+        if (Raylib.IsKeyDown(KeyboardKey.F))
         {
             settings.MuK -= 0.01f;
         }
@@ -94,12 +96,12 @@ public sealed class UIController
     private void HandleForceAngle(
         SimulationSettings settings)
     {
-        if (Raylib.IsKeyDown(KeyboardKey.Q))
+        if (Raylib.IsKeyDown(KeyboardKey.C))
         {
             settings.AppliedForceAngle -= 1f;
         }
 
-        if (Raylib.IsKeyDown(KeyboardKey.E))
+        if (Raylib.IsKeyDown(KeyboardKey.W))
         {
             settings.AppliedForceAngle += 1f;
         }
